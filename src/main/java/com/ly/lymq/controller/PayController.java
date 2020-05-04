@@ -25,7 +25,8 @@ public class PayController {
 
     @RequestMapping("api/v1/pay_cb")
     public Object callback(String text) throws InterruptedException, RemotingException, MQClientException, MQBrokerException {
-        Message message = new Message(JmsConfig.TOPIC, "taga", ("hello ly rocketmq=" + text).getBytes());
+        //设定消息message的key做唯一标识，例如:可以把订单作为唯一标识的key
+        Message message = new Message(JmsConfig.TOPIC, "taga", "6688",("hello ly rocketmq=" + text).getBytes());
 
         //发送消息
         SendResult sendResult = payProducer.getProducer().send(message);

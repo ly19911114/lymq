@@ -14,7 +14,11 @@ public class PayProducer {
     //此类是打算发送消息的应用程序的入口点。
     private DefaultMQProducer producer;
 
+
+
     public DefaultMQProducer getProducer() {
+        //设定消息重发失败次数为3
+        producer.setRetryTimesWhenSendFailed(3);
         return producer;
     }
 
